@@ -15,6 +15,7 @@
 ----------
 ##二、表格制作
 ###2.1 分支
+
 <table>
         <tr>
             <th>创建分支</th>
@@ -39,9 +40,39 @@
 ![](/branch.png)
 > [2]
 
+##三、流程图制作
 
+###3.1 打tag
+
+```mermaid
+flowchat
+st=>start: 开始
+e=>end: 结束
+op1=>operation: tag命令创建
+op2=>operation: push --tags/推送
+cond=>condition: Yes or No?
+op3=>operation: git tag/log --decorate显示
+io=>inputoutput: git tag --contains f63cd/输入查找
+
+st->op1->op2->cond
+cond(yes)->op3->io->e
+cond(no)->e
+```
+###3.2 其他命令
+
+|命令        | 功能           | 参数  |
+| ------------- |:-------------:| -----:|
+| clone      | git clone ssh://...git <br> 用--bare参数创建不带工作区的版本库| bare |
+| stash     | 将当前修改保存到本地，而去处理其他      |    |
+| git stash pop | 恢复位于栈顶的内容     |     |
+| rebase | git rebase master<br>将活动分支上的最新修改纳入某分支<br>git rebase master --onto release1<br>活动分支不属于master的提交拷贝到release1      |    --onto |
+| reset | 版本回退      |    --hard |
+
+>[3]
 
 ---------
 [1]：2020.01.02 周峰
 
 [2]：2020.01.05 周峰
+
+[3]：2020.01.06 周峰
