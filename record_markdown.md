@@ -15,9 +15,9 @@
 ----------
 ##二、表格制作
 ###2.1 分支
-
-<table>
-        <tr>
+html表格
+	<table>
+		<tr>
             <th>创建分支</th>
             <th>切换分支</th>
             <th>记录查看</th>
@@ -44,8 +44,7 @@
 
 ###3.1 打tag
 
-```mermaid
-flowchat
+```flow
 st=>start: 开始
 e=>end: 结束
 op1=>operation: tag命令创建
@@ -54,8 +53,8 @@ cond=>condition: Yes or No?
 op3=>operation: git tag/log --decorate显示
 io=>inputoutput: git tag --contains f63cd/输入查找
 
-st->op1->op2->cond
-cond(yes)->op3->io->e
+st->op1(right)->op2(right)->cond(left)
+cond(yes)->op3(right)->io->e
 cond(no)->e
 ```
 ###3.2 其他命令
@@ -70,9 +69,47 @@ cond(no)->e
 
 >[3]
 
+##四、序列图制作
+
+###4.1 提交过程
+
+```sequence
+title: git提交序列图
+participant 工作区
+participant 暂存区
+participant 版本库
+工作区-->>暂存区: git add
+note left of 工作区: 修改内容
+暂存区-->>版本库: git commit
+版本库->工作区: git reset
+note right of 版本库: 历史版本
+```
+
+###4.2 git 分支管理
+
+```sequence​
+title: git分支管理
+participant 中央版本库
+participant dev分支
+participant bug版本库
+participant 本地版本库
+中央版本库-->>本地版本库:pull
+Note left of 中央版本库:版本历史
+本地版本库->dev分支:merge 日常合并
+dev分支->中央版本库:merge 稳定版本发布
+bug版本库-->>dev分支:git cherry -pick复制提交
+note right of 本地版本库:feature 1……feature n
+```
+
+
+
+>[4]
+
 ---------
 [1]：2020.01.02 周峰
 
 [2]：2020.01.05 周峰
 
 [3]：2020.01.06 周峰
+
+[4]：2020.01.07 周峰
